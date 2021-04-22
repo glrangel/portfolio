@@ -49,16 +49,35 @@ h1 {
   flex-grow: 1;
 }
 .list {
-  flex-grow: 3;
-  letter-spacing: 2px;
-  font-size: 20px;
-  color: darkslategray;
-  display: flex;
-  justify-content: flex-start;
-  writing-mode: vertical-rl;
-  align-items: flex-end;
+    flex-grow: 3;
+    letter-spacing: 2px;
+    font-size: 20px;
+    display: flex;
+    /* justify-content: space-evenly; */
+    /* writing-mode: vertical-rl; */
+    flex-direction: column;
+    /* align-items: flex-end; */
 }
-.list a {
+.list * {
   margin-top: 10vh;
+  font-size: 30px;
   z-index: 1;
+  text-decoration: none;
+  color: grey;
+  letter-spacing: 4px;
+  transform: rotate(30deg);
+  /* opacity: 0.5; */
+}
+.list a:hover {
+  /* color: #179ff4; */
+  color:white;
+
+}
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
 }
