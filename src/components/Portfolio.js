@@ -1,7 +1,41 @@
+import { motion } from "framer-motion";
+
 function Portfolio() {
     return (
-        <h1 style={{color: "white"}}>Portfolio</h1>
-    )
+        <div className="main-content-container">
+            <motion.h1 className="component-headers" 
+                initial={{x: 500, rotate: -10}}
+                animate={{x: 20, rotate: 0}}
+                transition={{duration: 1.5, type: 'spring', stiffness: 30}}
+            >
+                Portfolio
+            </motion.h1>
+            <motion.div 
+                // initial={{ x: '-100vw'}}
+                // animate={{ x:0 }}
+                // transition={{duration:0.5}}
+                // style={{backgroundColor: 'rgba(218,37,37,0.1)'}} 
+                className="main-content"
+            >
+                <motion.div 
+                    // initial={{scale: 0.5, x: '-50vw'}}
+                    // animate={{scale:1.5, x: 0}}
+                    // transition={{duration:1}}
+                    initial={{opacity: 0, rotate: -10, x: -20}}
+                    animate={{opacity: 1, rotate: 0, x: 0}}
+                    transition={{duration: 1}}
+                >
+                    <h1>Portfolio</h1>
+                    <div>
+                        Demo project 1
+                    </div>
+                    <div>
+                        Demo Project 2
+                    </div>
+                </motion.div>
+            </motion.div>
+        </div>    
+        )
 }
 
 export default Portfolio;

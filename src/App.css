@@ -1,10 +1,12 @@
 * {
   box-sizing: border-box;
-  font-family: 'Roboto Mono', 'Courier New', Courier, monospace
+  font-family: 'noto','Roboto Mono', 'Courier New', Courier, monospace
 }
 html {
   /* background-color:rgba(214, 228, 21, 0.3); */
   background-color:black;
+  overflow: hidden;
+  /* cursor: crosshair; */
 
 }
 html,
@@ -43,41 +45,87 @@ section {
 h1 {
   text-transform: lowercase;
   letter-spacing: 4px;
-  font-size: 30px;
+  font-size: 25px;
 }
 .title {
-  flex-grow: 1;
+  /* flex-grow: 1; */
 }
 .list {
-    flex-grow: 3;
-    letter-spacing: 2px;
-    font-size: 20px;
-    display: flex;
-    /* justify-content: space-evenly; */
-    /* writing-mode: vertical-rl; */
-    flex-direction: column;
-    /* align-items: flex-end; */
+  flex-grow: 3;
+  letter-spacing: 2px;
+  font-size: 20px;
+  display: flex;
+  writing-mode: vertical-rl;
+  justify-content: flex-start;
+  align-items: flex-end;
+  -webkit-text-orientation: upright;
+  text-orientation: upright;
 }
-.list * {
-  margin-top: 10vh;
-  font-size: 30px;
+.list a {
+  margin-top: 4vh;
+  font-size: 26px;
   z-index: 1;
   text-decoration: none;
   color: grey;
-  letter-spacing: 4px;
-  transform: rotate(30deg);
+  letter-spacing: -4px;
+  /* transform: rotate(-5deg); */
+  width: fit-content;
   /* opacity: 0.5; */
 }
 .list a:hover {
   /* color: #179ff4; */
   color:white;
+  cursor:crosshair;
 
 }
 main {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+  /* padding: 30px; */
+  /* padding: 12vh; */
+}
+
+main h1 {
+    /* transform: rotate(45deg); */
+}
+.component-headers {
+  color: white;
+  font-size: 50px;
+  /* background: rgba(218,37,37,0.12); */
+  padding: 20px;
+  /* margin-top: 0; */
+  letter-spacing: 20px;
+  padding-right: 100px;
+}
+
+.main-content {
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
   width: 100vw;
   height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+  padding: 30px;
+}
+
+.main-content-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  position: absolute;
+  /* width: 100vw; */
+  /* height: 100vh; */
+  z-index: 1;
+  pointer-events: none;
+  /* padding: 30px; */
+  color:white;
+
 }

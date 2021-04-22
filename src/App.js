@@ -1,10 +1,12 @@
 import React from "react";
 import { Switch, Route, NavLink} from "react-router-dom";
 import './App.css';
+import { motion } from "framer-motion";
 import Home from "./components/Home";
 import Background from "./components/Background";
 import Portfolio from "./components/Portfolio";
 import Contact from "./components/Contact";
+// const MotionNavLink = motion.custom(NavLink);
 
 function App() {
   return (
@@ -15,6 +17,7 @@ function App() {
           <h1 style={{color: "#179ff4"}}>fullstack web developer </h1>
         </div>
         <div class="list">
+          <NavLink to="/home">home</NavLink>
           <NavLink to="/portfolio">portfolio</NavLink>
           <NavLink to="/contact">contact</NavLink>
         </div>

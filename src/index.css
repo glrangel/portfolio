@@ -11,3 +11,28 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: 'vcr';
+  src: local('vcr'), url(./assets/fonts/vcr.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'bergen';
+  src: local('bergen'), url(./assets/fonts/bergen.otf) format('opentype');
+}
+
+@font-face {
+  font-family: 'michroma';
+  src: local('michroma'), url(./assets/fonts/michroma.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'recoleta';
+  src: local('recoleta'), url(./assets/fonts/recoleta.otf) format('opentype');
+}
+
+@font-face {
+  font-family: 'noto';
+  src: local('noto'), url(./assets/fonts/noto.ttf) format('truetype');
+}
