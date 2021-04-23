@@ -1,35 +1,59 @@
 import { Canvas, useFrame, extend} from 'react-three-fiber';
 import * as THREE from "three";
-import { softShadows, OrbitControls, Effects } from '@react-three/drei';
-import {Physics, useBox, usePlane} from "@react-three/cannon";
+import { softShadows } from '@react-three/drei';
+import {Physics} from "@react-three/cannon";
 import {useRef, useState} from 'react';
 import {UnrealBloomPass} from 'three/examples/jsm/postprocessing/UnrealBloomPass';
 import {BloomPass} from 'three/examples/jsm/postprocessing/BloomPass';
 import {GlitchPass} from 'three/examples/jsm/postprocessing/GlitchPass';
 import {FilmPass} from 'three/examples/jsm/postprocessing/FilmPass';
-import { WireframeGeometry } from 'three';
-
 softShadows();
 extend({BloomPass, FilmPass, UnrealBloomPass, GlitchPass});
 
-function Box({position = [0,0,0], color = "yellow"}) {
-  const mesh = useRef();
+// function Box({position = [0,0,0], color = "yellow"}) {
+//   const mesh = useRef();
 
-  useFrame(() => {
-    mesh.current.rotation.z = mesh.current.rotation.z += 0.005;
+//   useFrame(() => {
+//     mesh.current.rotation.z = mesh.current.rotation.z += 0.005;
 
-  })
-  return (
-    <mesh
-      castShadow
-      ref={mesh}
-      position={position}
-    >
-      <boxBufferGeometry attach="geometry" />
-      <meshLambertMaterial  attach="material" color={color}/>
-    </mesh>
-  )
-}
+//   })
+//   return (
+//     <mesh
+//       castShadow
+//       ref={mesh}
+//       position={position}
+//     >
+//       <boxBufferGeometry attach="geometry" />
+//       <meshLambertMaterial  attach="material" color={color}/>
+//     </mesh>
+//   )
+// }
+
+// function Plane({isOut}) {
+//   const mesh = useRef();
+
+//   useFrame((state) => {
+//     mesh.current.rotation.y = mesh.current.rotation.y += 0.05;
+
+//     if(!isOut) {
+
+//     }
+
+//   })
+//   return (
+//     <mesh
+//       ref={mesh}
+//       position={[-8,7, 15]}
+//       // position={[0, 0, 0]}
+//       rotation={[-Math.PI, 0, 0]}
+//       receiveShadow
+//     >
+//       <planeBufferGeometry attach="geometry" line="lineSegments" args={[0.5, 0.5, 32,16]} />
+//       <meshBasicMaterial side={THREE.DoubleSide} attach="material" color="#179ff4"/>
+//     </mesh>
+//   )
+// }
+
 function Sphere({isOut, position = [0,0,0], size, color, speed = 0.01}) {
   const mesh = useRef(),
     dx = 0.05 ;
@@ -42,8 +66,6 @@ function Sphere({isOut, position = [0,0,0], size, color, speed = 0.01}) {
       mesh.current.rotation.x += speed * (state.mouse.y - mesh.current.rotation.x);
       mesh.current.rotation.y += speed * (state.mouse.x - mesh.current.rotation.y);
     }
-
-
 
   })
   return (
@@ -58,34 +80,6 @@ function Sphere({isOut, position = [0,0,0], size, color, speed = 0.01}) {
     </mesh>
   )
 }
-
-function Plane({isOut}) {
-  const mesh = useRef();
-
-  useFrame((state) => {
-    mesh.current.rotation.y = mesh.current.rotation.y += 0.05;
-
-    if(!isOut) {
-
-    }
-
-
-
-  })
-  return (
-    <mesh
-      ref={mesh}
-      position={[-8,7, 15]}
-      // position={[0, 0, 0]}
-      rotation={[-Math.PI, 0, 0]}
-      receiveShadow
-    >
-      <planeBufferGeometry attach="geometry" line="lineSegments" args={[0.5, 0.5, 32,16]} />
-      <meshBasicMaterial side={THREE.DoubleSide} attach="material" color="#179ff4"/>
-    </mesh>
-  )
-}
-
 
 function Background() {
   const [state, setState] = useState({isOut: false, currEvent: ''});

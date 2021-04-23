@@ -1,7 +1,7 @@
 import React from "react";
-import { Switch, Route, NavLink} from "react-router-dom";
+import { Switch, Route, NavLink, useLocation} from "react-router-dom";
 import './App.css';
-import { motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import Home from "./components/Home";
 import Background from "./components/Background";
 import Portfolio from "./components/Portfolio";
@@ -9,6 +9,7 @@ import Contact from "./components/Contact";
 // const MotionNavLink = motion.custom(NavLink);
 
 function App() {
+  const location = useLocation();
   return (
     <div className="container">
       <nav className="overlay">
@@ -24,11 +25,13 @@ function App() {
       </nav>
       {/* location={location} key={location.pathname} */}
       <main>
-        <Switch>
-          <Route path="/portfolio" component={Portfolio} />
-          <Route path="/contact" component={Contact} />
-          <Route path="/" component={Home} />
-        </Switch>
+        <AnimatePresence>
+          <Switch location={location} key={location.key}>
+            <Route path="/portfolio" component={Portfolio} />
+            <Route path="/contact" component={Contact} />
+            <Route path="/" component={Home} />
+          </Switch>
+        </AnimatePresence>
       </main>
       <Background />
     </div>
