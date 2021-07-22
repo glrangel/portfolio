@@ -4,10 +4,10 @@ function Home() {
     return (
         <div className="main-content-container">
             <motion.h1 className="component-headers" 
-                initial={{x: 300, rotate: -10}}
-                animate={{x: 20, rotate: 0}}
+                initial={{y: -300, rotate: -40}}
+                animate={{y: 0, rotate: 0}}
                 transition={{duration: 1.5, type: 'spring', stiffness: 30}}
-                exit={{rotate: 10, x:300, opacity: 0}}
+                exit={{rotate: 40, y:-300, opacity: 0}}
             >
                 Home
             </motion.h1>

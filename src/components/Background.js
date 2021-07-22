@@ -7,6 +7,7 @@ import {UnrealBloomPass} from 'three/examples/jsm/postprocessing/UnrealBloomPass
 import {BloomPass} from 'three/examples/jsm/postprocessing/BloomPass';
 import {GlitchPass} from 'three/examples/jsm/postprocessing/GlitchPass';
 import {FilmPass} from 'three/examples/jsm/postprocessing/FilmPass';
+// import { Scene } from 'three';
 softShadows();
 extend({BloomPass, FilmPass, UnrealBloomPass, GlitchPass});
 
@@ -53,6 +54,34 @@ extend({BloomPass, FilmPass, UnrealBloomPass, GlitchPass});
 //     </mesh>
 //   )
 // }
+// const scene = new THREE.Scene();
+
+function Particle() {
+    const mesh = useRef();
+
+  useFrame((state) => {
+    // mesh.current.rotation.y = mesh.current.rotation.y += 0.0015;
+    mesh.current.position.set(state.mouse.x* 10, state.mouse.y* 10);
+    mesh.current.scale.set(mesh.current.scale.x*0.9,mesh.current.scale.y*0.9,mesh.current.scale.z*0.9);
+    // if(!isOut) {
+    //   mesh.current.position.set(-state.mouse.x*dx , state.mouse.y*dx )
+    //   mesh.current.rotation.x += speed * (state.mouse.y - mesh.current.rotation.x);
+    //   mesh.current.rotation.y += speed * (state.mouse.x - mesh.current.rotation.y);
+    // }
+
+  })
+  return (
+    //points vs. mesh
+    <mesh ref={mesh} rotation={[0,0, 0]}>
+      <sphereBufferGeometry attach="geometry" args={[0.50,16,2]}/>
+      {/* <torusBufferGeometry attach="geometry" args={[2, 1, 16, 50]}/> */}
+
+      {/* wireframe wireframeLinewidth={1} */}
+      <meshLambertMaterial metalness="0.7" roughness="0.2"   attach="material" color={"red"}/>
+      {/* <pointsMaterial size="0.05"  color={color}/> */}
+    </mesh>
+  )
+}
 
 function Sphere({isOut, position = [0,0,0], size, color, speed = 0.01}) {
   const mesh = useRef(),
@@ -82,12 +111,13 @@ function Sphere({isOut, position = [0,0,0], size, color, speed = 0.01}) {
 }
 
 function Background() {
-  const [state, setState] = useState({isOut: false, currEvent: ''});
-
+  const [state, setState] = useState({isOut: false, currEvent: '', boxes: []});
+  const boxes = []
   return (
       <Canvas
         onPointerOver={() => setState({isOut: false})}
         onPointerOut={() => setState({isOut: true})}
+        // onPointerDown={() => setState({boxes: clickEffect(boxes)})}
         id="canvas"
         // shadowMap
         camera={{position: [0, 0, -10], fov:50}}
@@ -112,6 +142,11 @@ function Background() {
           <Sphere isOut={state.isOut} color={"grey"} size={[2,16,2]}/>
           <Sphere isOut={state.isOut} color={"grey"} speed={0.03} position={[2,1 , 0]} size={[1,16,2]}/>
           <Sphere isOut={state.isOut} color={"grey"} speed={0.15} position={[-2,-1, 0]} size={[0.50,16,2]}/>
+          { state.boxes && state.boxes.map((obj) => {
+              return obj
+            })
+          }
+          {/* <Sphere isOut={state.isOut} color={"grey"} size={[1.5,20,20]}/> */}
           {/* <Sphere isOut={state.isOut} color={"grey"} size={[1.5,20,20]}/>
           <Sphere isOut={state.isOut} color={"grey"} position={[2,1 , 0]} size={[0.5,16,2]}/>
           <Sphere isOut={state.isOut} color={"grey"} position={[-2,-1, 0]} size={[0.25,16,2]}/> */}
@@ -120,5 +155,14 @@ function Background() {
       </Canvas>
   );
 }
+
+function clickEffect(boxes) {
+    console.log("clkicked");
+    boxes.push(<Particle />);
+    return boxes;
+    // console.log(boxes);
+    // return <Sphere isOut={state.isOut} color={"grey"} speed={0.15} position={[-4,-1, 0]} size={[0.50,16,2]}/>
+}
+
 
 export default Background;

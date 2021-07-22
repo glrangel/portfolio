@@ -4,14 +4,15 @@ function Portfolio() {
     return (
         <div className="main-content-container">
             <motion.h1 className="component-headers" 
-                initial={{x: 500, rotate: -10}}
-                animate={{x: 20, rotate: 0}}
+                initial={{y: -500, rotate: -40}}
+                animate={{y: 0, rotate: 0}}
                 transition={{duration: 1.5, type: 'spring', stiffness: 30}}
-                exit={{rotate: 10, x:500, opacity: 0}}
+                exit={{rotate: 40, y:-500, opacity: 0}}
 
             >
                 Portfolio
             </motion.h1>
+            {/* Content */}
             <motion.div 
                 // initial={{ x: '-100vw'}}
                 // animate={{ x:0 }}
